@@ -27,3 +27,7 @@ exports.help = {
     usage: 'command <mandatory argument> [facultative argument]',
 };
 ```
+
+## Linter
+
+Linter is run using `npx eslint bot`.
