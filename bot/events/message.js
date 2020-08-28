@@ -3,9 +3,12 @@
 require('dotenv').config();
 
 module.exports = (client, msg) => {
-    // don't handle bot, DM and non commands messages
-    if (msg.author.bot || msg.channel.type === 'dm' || !msg.content.startsWith(process.env.PREFIX))
+    // don't handle bot and non commands messages
+    if (msg.author.bot || !msg.content.startsWith(process.env.PREFIX))
         return;
+
+    if (msg.channel.type === 'dm')
+        return;  // TODO handle dm as tickets or whatever
 
     // get command and arguments after prefix
     const args = msg.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
@@ -19,7 +22,7 @@ module.exports = (client, msg) => {
     if (command) {
         if (command.help.category === 'Owner' && msg.author.id !== process.env.OWNER)
             msg.channel.send(':x: You need to be the bot owner to run this command');
-        else if (command.help.category === 'Admin' && !msg.member.hasPermission('ADMINISTRATOR'))
+        else if (command.help.category === 'Admin' && !msg.member.hasPermission('ADMINISTRATOR') && msg.author.id !== process.env.OWNER)
             msg.channel.send(':x: You need to be an administrator to run this command');
         else
             command.run(client, msg, args);
