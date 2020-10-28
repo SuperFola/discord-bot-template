@@ -7,14 +7,14 @@ exports.run = (client, msg, args) => {
 
     let servers = [];
     let total_members = 0;
-    client.guilds.cache.forEach(guild => {
-        let owner = guild.members.cache.get(guild.ownerID).user.username;
-        if (guild.available) {
+    client.guilds.cache.forEach(g => {
+        console.log(g.owner.displayName)
+        if (g.available) {
             servers.push({
-                name: `${guild.name} owned by ${owner}`,
-                value: `${guild.memberCount} members`,
+                name: `${g.name} owned by ${g.owner.displayName}`,
+                value: `${g.memberCount} members`,
             });
-            total_members += guild.memberCount;
+            total_members += g.memberCount;
         }
     });
 
