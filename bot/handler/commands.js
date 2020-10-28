@@ -5,7 +5,8 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 
-module.exports = client => {
+module.exports = async client => {
+    let start = +new Date();
     client.commands = new Discord.Collection();
 
     fs.readdirSync('./bot/commands/').forEach(dir => {
@@ -20,5 +21,5 @@ module.exports = client => {
         }
     });
 
-    console.log('Commands registered');
+    console.log(`Commands registered in ${+new Date() - start}ms`);
 };
