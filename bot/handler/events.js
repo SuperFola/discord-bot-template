@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const fs = require('fs');
 
-module.exports = async client => {
+module.exports = client => {
     let start = +new Date();
     fs.readdirSync('./bot/events/').forEach(file => {
         if (!file.endsWith('.js'))

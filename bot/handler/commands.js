@@ -5,7 +5,7 @@ require('dotenv').config();
 const Discord = require('discord.js');
 const fs = require('fs');
 
-module.exports = async client => {
+module.exports = client => {
     let start = +new Date();
     client.commands = new Discord.Collection();
 
