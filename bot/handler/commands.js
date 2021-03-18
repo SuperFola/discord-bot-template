@@ -16,6 +16,7 @@ module.exports = client => {
             const pull = require(`../commands/${dir}/${file}`);
             pull.help.category = dir;
             pull.help.name = file.split('.')[0];
+            pull.help.enabled = true;
             if (pull.help.name)
                 client.commands.set(pull.help.name, pull);
         }

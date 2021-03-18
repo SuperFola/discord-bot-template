@@ -8,7 +8,7 @@ module.exports = (client, msg) => {
         return;
 
     if (msg.channel.type === 'dm')
-        return;  // TODO handle dm as tickets or whatever
+        return; // TODO handle dm as tickets or whatever
 
     // get command and arguments after prefix
     const args = msg.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
@@ -19,7 +19,7 @@ module.exports = (client, msg) => {
 
     // run command based on its name and aliases
     let command = client.commands.get(cmd);
-    if (command) {
+    if (command && command.help.enabled) {
         if (command.help.category === 'Owner' && msg.author.id !== process.env.OWNER)
             msg.channel.send(':x: You need to be the bot owner to run this command');
         else if (command.help.category === 'Admin' && !msg.member.hasPermission('ADMINISTRATOR') && msg.author.id !== process.env.OWNER)
