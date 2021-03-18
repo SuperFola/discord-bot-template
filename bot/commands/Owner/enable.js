@@ -9,7 +9,7 @@ exports.run = (client, msg, args) => {
         return msg.channel.send(`:x: Command not found with name \`${args.join(' ')}\` !`);
     else {
         cmd.help.enabled = true;
-        return msg.channel.send(`:white_check_mark: Command '${cmd.name}' has been enabled`);
+        return msg.channel.send(`:white_check_mark: Command '${cmd.help.name}' has been enabled`);
     }
 };
 
