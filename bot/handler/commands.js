@@ -33,7 +33,7 @@ module.exports = client => {
             pull.help.name = file.split('.')[0];
 
             let cmd = save['commands'][pull.help.name];
-            cmd = cmd === null ? {'enabled': true} : cmd;
+            cmd = cmd === undefined || cmd === null ? {'enabled': true} : cmd;
             pull.help.enabled = cmd['enabled'];
 
             if (pull.help.name)
